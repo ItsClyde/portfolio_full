@@ -193,16 +193,30 @@
 
 (function () {
   try {
-    // disable gradient motion on: prefers-reduced-motion, slow connections (2g), or small-touch screens
+    // Respect explicit user preference first
     const prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    const slowConnection = connection && (connection.effectiveType === '2g' || connection.saveData === true);
-    const smallTouch = (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent) && Math.min(screen.width, screen.height) < 768);
 
-    if (prefersReduce || slowConnection || smallTouch) {
+    // Network / save-data / effective type detection
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const slowConnection = connection && (connection.saveData === true || /2g|slow-2g/.test(connection.effectiveType || ''));
+
+    // Hardware capability checks where available
+    const deviceMemory = navigator.deviceMemory || 0; // GB
+    const hwConcurrency = navigator.hardwareConcurrency || 0;
+
+    // Small screen / touch heuristic
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
+    const smallScreen = Math.min(window.screen.width, window.screen.height) < 768;
+
+    // If low-memory, low-cpu, slow network, small touch device, or user prefers reduced motion -> disable motion
+    const lowPowerHeuristic = (deviceMemory && deviceMemory <= 1) || (hwConcurrency && hwConcurrency <= 2);
+    const shouldReduce = prefersReduce || slowConnection || (isTouch && smallScreen) || lowPowerHeuristic;
+
+    if (shouldReduce) {
       document.body.classList.add('reduced-gradient-motion');
     }
   } catch (e) {
-    // fail silently
+    // fail silently — on error, do not break page
+    try { document.body.classList.add('reduced-gradient-motion'); } catch (e2) {}
   }
 })();
