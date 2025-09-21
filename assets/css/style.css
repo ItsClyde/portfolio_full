@@ -812,4 +812,59 @@ textarea.form-control:focus {
   background-image: none !important;
 }
 
-/* End: hero/profile image background cleanup */
+/* Mobile / reduced motion fixes to avoid fast flicker on phones */
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none !important;
+    background-position: 50% 50% !important;
+  }
+}
+
+/* Target touch devices and small screens: stop the background animation and stabilize visuals */
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  body::before {
+    /* stop animating background-position; animate transform instead */
+    animation: gradientTranslate 80s linear infinite !important;
+    background-position: 50% 50% !important;
+    opacity: 0.22 !important;
+    filter: blur(100px) !important;
+    will-change: transform !important;
+    transform: translate3d(0,0,0);
+  }
+
+  /* lighter transitions on interactive elements to reduce repaints */
+  .hero .image-wrapper img,
+  .social-links a,
+  .header .header-social-links a {
+    transition: transform .12s ease, background .12s ease;
+    -webkit-transition: transform .12s ease, background .12s ease;
+  }
+}
+
+/* Transform-based gradient motion (GPU friendly) */
+@keyframes gradientTranslate {
+  0%   { transform: translate3d(-6%, -6%, 0) scale(1.02); }
+  50%  { transform: translate3d(6%, 6%, 0) scale(1.02); }
+  100% { transform: translate3d(-6%, -6%, 0) scale(1.02); }
+}
+
+/* Respect user motion preference and explicit reduction class added by JS */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  html.reduced-gradient-motion body::before,
+  body.reduced-gradient-motion::before {
+    animation: none !important;
+    background-position: 50% 50% !important;
+    transform: none !important;
+    opacity: 0.20 !important;
+  }
+}
+
+/* Class target for JS to force-disable animation when device is low-power */
+.reduced-gradient-motion::before,
+html.reduced-gradient-motion::before {
+  animation: none !important;
+  background-position: 50% 50% !important;
+  transform: none !important;
+  opacity: 0.20 !important;
+}

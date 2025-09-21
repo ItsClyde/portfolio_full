@@ -190,3 +190,19 @@
   });
 
 })();
+
+(function () {
+  try {
+    // disable gradient motion on: prefers-reduced-motion, slow connections (2g), or small-touch screens
+    const prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const slowConnection = connection && (connection.effectiveType === '2g' || connection.saveData === true);
+    const smallTouch = (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent) && Math.min(screen.width, screen.height) < 768);
+
+    if (prefersReduce || slowConnection || smallTouch) {
+      document.body.classList.add('reduced-gradient-motion');
+    }
+  } catch (e) {
+    // fail silently
+  }
+})();
