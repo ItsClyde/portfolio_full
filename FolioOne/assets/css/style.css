@@ -1,0 +1,815 @@
+/* Color theme override — Rich Black / Vivid Yellow / Light text */
+
+/* Core variables (Bootstrap + template variables) */
+:root {
+  /* Bootstrap variables */
+  --bs-primary: #FEE715;
+  --bs-secondary: #121A22;
+  --bs-dark: #101820;
+  --bs-body-color: #EAEAEA;
+  --bs-body-bg: #101820;
+
+  /* Template variables used in main.css */
+  --accent-color: #FEE715;        /* Vivid Yellow */
+  --background-color: #101820;    /* Rich Black */
+  --surface-color: #121A22;       /* Slightly lighter black for alternating surfaces */
+  --default-color: #EAEAEA;       /* Light gray text on dark backgrounds */
+  --heading-color: #FFFFFF;       /* Headings on dark */
+  --contrast-color: #101820;      /* Text on vivid yellow (use Rich Black on yellow) */
+
+  /* Nav colors */
+  --nav-color: #EAEAEA;
+  --nav-hover-color: #FEE715;
+  --nav-mobile-background-color: #121A22;
+  --nav-dropdown-background-color: #121A22;
+  --nav-dropdown-color: #EAEAEA;
+  --nav-dropdown-hover-color: #FEE715;
+
+  /* Section backgrounds for alternating sections */
+  --section-bg-odd: #101820;
+  --section-bg-even: #121A22;
+}
+
+/* Ensure root-level body & text use new variables */
+html, body {
+  background-color: var(--background-color) !important;
+  color: var(--default-color) !important;
+}
+
+/* Links and hover states */
+a,
+.navmenu a,
+.footer a {
+  color: var(--accent-color);
+  transition: color .15s ease-in-out, opacity .15s ease-in-out;
+}
+a:hover,
+.navmenu a:hover,
+.footer a:hover {
+  color: var(--nav-hover-color);
+  text-decoration: none;
+}
+
+/* Buttons: primary uses vivid yellow with rich black text per spec */
+.btn-primary,
+.btn.btn-primary {
+  background-color: var(--accent-color) !important;
+  color: var(--contrast-color) !important;
+  border-color: var(--accent-color) !important;
+  box-shadow: none !important;
+}
+.btn-primary:hover,
+.btn.btn-primary:hover,
+.btn-primary:focus,
+.btn.btn-primary:focus {
+  background-color: #ecd60b !important; /* subtle darker yellow on hover */
+  color: var(--contrast-color) !important;
+  border-color: #ecd60b !important;
+  transform: translateY(-1px);
+}
+
+/* Outline / secondary buttons keep accent for borders and text */
+.btn-outline,
+.btn-outline-primary,
+.btn.btn-outline-primary {
+  color: var(--accent-color) !important;
+  border-color: var(--accent-color) !important;
+}
+.btn-outline:hover,
+.btn-outline:focus {
+  background-color: rgba(254,231,21,0.06);
+}
+
+/* Navbar / header */
+.header {
+  background-color: var(--background-color) !important;
+  color: var(--nav-color) !important;
+  border-bottom-color: rgba(234,234,234,0.04) !important;
+}
+.header .navmenu a,
+.header .navmenu a:focus {
+  color: var(--nav-color) !important;
+}
+.header .navmenu a:hover,
+.header .navmenu .active,
+.header .navmenu .active:focus {
+  color: var(--nav-hover-color) !important;
+}
+
+/* Mobile nav background */
+.navmenu>ul {
+  background-color: var(--nav-mobile-background-color) !important;
+}
+
+/* Dropdown menus */
+.navmenu .dropdown ul {
+  background-color: var(--nav-dropdown-background-color) !important;
+}
+.navmenu .dropdown ul a {
+  color: var(--nav-dropdown-color) !important;
+}
+.navmenu .dropdown ul a:hover,
+.navmenu .dropdown ul a:focus {
+  color: var(--nav-dropdown-hover-color) !important;
+}
+
+/* Section background alternation (keep spacing/layout unchanged) */
+section.section,
+.section {
+  background-color: var(--section-bg-odd) !important;
+}
+/* Attempt alternating visual tone for successive sections */
+main .section:nth-of-type(even),
+section.section:nth-of-type(even) {
+  background-color: var(--section-bg-even) !important;
+}
+
+/* Surface elements (cards, boxes) */
+.surface, .card, .service-item, .contact .info-box, .portfolio .portfolio-card {
+  background-color: var(--surface-color) !important;
+  border-color: rgba(234,234,234,0.04) !important;
+  color: var(--default-color) !important;
+}
+
+/* Headings */
+h1,h2,h3,h4,h5,h6 {
+  color: var(--heading-color) !important;
+}
+
+/* Forms & inputs — preserve structure, recolor borders and focus states */
+.form-control,
+.form-select,
+textarea.form-control,
+input.form-control {
+  background: transparent !important;
+  color: var(--default-color) !important;
+  border: 1px solid rgba(234,234,234,0.08) !important;
+  box-shadow: none !important;
+}
+.form-control::placeholder,
+.form-select::placeholder {
+  color: rgba(234,234,234,0.55);
+}
+.form-control:focus,
+.form-select:focus,
+textarea.form-control:focus {
+  outline: none !important;
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 0 0 0.25rem rgba(254,231,21,0.12) !important;
+}
+
+/* Contact form submit button */
+.contact .contact-form .btn,
+.form-submit .btn,
+button[type="submit"],
+input[type="submit"] {
+  background-color: var(--accent-color) !important;
+  color: var(--contrast-color) !important;
+  border-color: var(--accent-color) !important;
+}
+.contact .contact-form .btn:hover,
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background-color: #ecd60b !important;
+  border-color: #ecd60b !important;
+}
+
+/* Progress bars / skills (use accent color) */
+.progress .progress-bar,
+.resume .skill-item .progress .progress-bar,
+.skills .skill-box .progress .progress-bar {
+  background-color: var(--accent-color) !important;
+}
+
+/* Footer social links */
+.footer .social-links a,
+.header .header-social-links a {
+  border-color: rgba(234,234,234,0.08) !important;
+  color: rgba(234,234,234,0.85) !important;
+}
+.footer .social-links a:hover,
+.header .header-social-links a:hover {
+  color: var(--accent-color) !important;
+  border-color: var(--accent-color) !important;
+}
+
+/* Scroll-top button */
+.scroll-top {
+  background-color: var(--accent-color) !important;
+}
+.scroll-top i {
+  color: var(--contrast-color) !important;
+}
+
+/* Small utility: make sure any template uses of --accent-color and --contrast-color follow spec */
+*:where(.btn-primary, .highlight, .hero .social-links a, .portfolio .btn-primary) {
+  accent-color: var(--accent-color);
+}
+
+/* Ensure high specificity for important overrides (minimal use of !important above) */
+
+/* Blurred diagonal gradient background (Rich Black #101820 → Vivid Yellow #FEE715)
+   Implemented with a body::before pseudo-element behind all site content.
+   Keeps layout, spacing, and Bootstrap components unchanged. */
+
+html, body {
+  /* ensure pseudo-element covers viewport */
+  min-height: 100%;
+  position: relative;
+}
+
+/* Background blur layer */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%; /* extend beyond viewport to avoid hard edges when blurred */
+  pointer-events: none;
+  z-index: 0; /* sit behind content (content will be placed above with z-index > 0) */
+
+  /* diagonal gradient: start vivid yellow -> rich black -> subtle yellow */
+  background: linear-gradient(135deg,
+    rgba(254,229,21,0.50) 0%,
+    rgba(16,24,32,0.60) 55%,
+    rgba(254,229,21,0.20) 100%);
+
+  filter: blur(60px);
+  opacity: 0.5; /* overall opacity as requested */
+  transform: translateZ(0); /* create own layer for smoother rendering */
+}
+
+/* Ensure site content renders above the blur without altering layout */
+#header,
+.main,
+#footer,
+.hero,
+.section,
+.section * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Keep high z-index for fixed UI elements (scroll-top, preloader, modals, etc.) */
+.scroll-top { z-index: 99999; }
+#preloader { z-index: 9999; }
+.glightbox-cleanup, .glightbox-container, .modal { z-index: 100000 !important; }
+
+/* End of blurred gradient background */
+
+/* Form-local blurred gradient overlay
+   - Shows the same diagonal Rich Black → Vivid Yellow gradient inside form containers
+   - Uses a ::before pseudo-element so structure/markup is not changed
+   - Keeps text and controls fully readable
+*/
+
+form,
+.contact .contact-form,
+.contact .info-box,
+.card form,
+.form-section,
+.form-container,
+.form-inline,
+.form-row {
+  position: relative;       /* allow pseudo-element positioning */
+  overflow: hidden;         /* contain the blurred edge */
+  background-color: rgba(16,24,32,0.35); /* slight dark tint to preserve contrast */
+  z-index: 1;               /* stay above page-level background blur */
+}
+
+/* Form overlay using a softened, less-blurred gradient so content remains readable */
+form::before,
+.contact .contact-form::before,
+.contact .info-box::before,
+.card form::before,
+.form-section::before,
+.form-container::before,
+.form-inline::before,
+.form-row::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0; /* sits behind form content but above body::before */
+  background: linear-gradient(135deg,
+    rgba(254,229,21,0.20) 0%,
+    rgba(16,24,32,0.40) 55%,
+    rgba(254,229,21,0.06) 100%);
+  filter: blur(28px);
+  opacity: 0.48;
+  transform: translateZ(0);
+  /* respect any card rounding */
+  border-radius: inherit;
+}
+
+/* Ensure form children render above the overlay */
+form > * ,
+.contact .contact-form > * ,
+.contact .info-box > * ,
+.card form > * ,
+.form-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Keep inputs fully readable (no change to layout) */
+.form-control,
+.form-select,
+textarea.form-control,
+input.form-control {
+  background: transparent !important; /* allow overlay/background to show */
+  color: var(--default-color) !important;
+}
+
+/* Slight adjustment for form boxes that previously used solid surfaces */
+.contact .info-box,
+.contact .contact-form,
+.card form {
+  border: 1px solid rgba(234,234,234,0.04);
+}
+
+/* End of form-local gradient overlay */
+
+/* GLOBAL GRADIENT BLUR (fixed, behind all content) + responsive shift animation
+   - Uses body::before with z-index: -1 so the blur flows seamlessly behind everything
+   - Increases blur to 100px, diagonal gradient, slow animated shift
+   - Keeps layout, spacing and Bootstrap components intact
+*/
+
+/* Body baseline for stacking context */
+body {
+  background: #101820; /* fallback */
+  position: relative;
+  z-index: 0;
+  overflow-x: hidden;
+}
+
+/* Full-viewport, fixed blurred gradient layer behind content */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: -1; /* sit behind everything on the page */
+  /* Diagonal gradient: Rich Black -> Vivid Yellow -> Rich Black for soft center glow */
+  background: linear-gradient(135deg, #101820 0%, #FEE715 50%, #101820 100%);
+  background-size: 400% 400%;
+  filter: blur(100px);
+  opacity: 0.40; /* keeps content readable */
+  transform: translateZ(0);
+  will-change: background-position, transform;
+  animation: gradientShift 25s ease-in-out infinite;
+}
+
+/* Smooth slow shift for the gradient */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  25%  { background-position: 50% 75%; }
+  50%  { background-position: 100% 50%; }
+  75%  { background-position: 50% 25%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Ensure primary content sits above the global blur.
+   Many template elements already have relative positioning; keep them above by default. */
+#header,
+.main,
+#footer,
+.hero,
+.section,
+.section * {
+  position: relative;
+  z-index: 0; /* keep default stacking, above body::before which is z-index:-1 */
+}
+
+/* Fixed UI elements must stay on top */
+.scroll-top { z-index: 99999; }
+#preloader { z-index: 9999; }
+.glightbox-cleanup, .glightbox-container, .modal { z-index: 100000 !important; }
+
+/* Make header/body edges flow with the global blurred gradient
+   - Removes solid "boxed" backgrounds and lets the fixed body::before show through
+   - Keeps spacing, layout and Bootstrap components unchanged
+   - Only color/visual overrides
+*/
+
+/* Ensure base containers don't add solid backgrounds */
+.container,
+.container-fluid,
+.row,
+.col,
+.section,
+section.section,
+.main,
+#header,
+#footer {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Header: keep slight translucent surface for legibility while allowing gradient through */
+.header,
+.header.light-background,
+.light-background {
+  background: rgba(16,24,32,0.56) !important; /* semi-transparent so gradient shows */
+  color: var(--default-color) !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid rgba(255,255,255,0.03) !important;
+}
+
+/* Footer similar treatment */
+.footer {
+  background: rgba(16,24,32,0.56) !important;
+  color: var(--default-color) !important;
+  box-shadow: none !important;
+}
+
+/* Cards / surface elements: semi-transparent surfaces so gradient flows behind them */
+.surface,
+.card,
+.service-item,
+.contact .info-box,
+.portfolio .portfolio-card,
+.hero .image-wrapper,
+.header-social-links,
+.social-links {
+  background-color: rgba(16,24,32,0.60) !important;
+  color: var(--default-color) !important;
+  border: 1px solid rgba(255,255,255,0.03) !important;
+}
+
+/* Remove any previously-applied solid section background so global blur is visible */
+main .section:nth-of-type(odd),
+main .section:nth-of-type(even),
+section.section {
+  background: transparent !important;
+}
+
+/* Ensure any explicit inline/background-image on header or sections doesn't hide the gradient */
+[style*="background"],
+[style*="background-color"] {
+  /* preserve explicit styles except background color/images that block gradient */
+  background-color: inherit !important;
+  background-image: none !important;
+}
+
+/* Keep form fields readable while allowing global gradient visibility */
+form,
+.form-control,
+.form-select,
+textarea.form-control,
+input.form-control {
+  background: rgba(0,0,0,0.20) !important;
+  color: var(--default-color) !important;
+  border: 1px solid rgba(234,234,234,0.06) !important;
+  box-shadow: none !important;
+}
+
+/* Ensure header and main content render above body::before (which uses z-index: -1) */
+#header, .main, #footer, .hero, .section {
+  position: relative;
+  z-index: 0;
+}
+
+/* Keep overlays, modals and UI controls on top */
+.scroll-top { z-index: 99999; }
+#preloader { z-index: 9999; }
+.glightbox-cleanup, .glightbox-container, .modal { z-index: 100000 !important; }
+
+/* Small safety: remove strong rounding that could reveal hard edges */
+.card,
+.surface,
+.service-item,
+.contact .info-box {
+  border-radius: 0.375rem; /* keep original feel; adjust if you want completely flat */
+}
+
+/* Final theme refinements: darker, lower-opacity global gradient + smoother, less-boxy surfaces
+   - Lowers gradient opacity so content contrast is improved
+   - Increases blur and coverage for smoother diffusion
+   - Removes strong boxy edges by making surfaces semi-transparent and reducing visible borders
+   - Placed here to override earlier rules without changing layout/spacing
+*/
+
+/* Ensure body stacking baseline (no layout changes) */
+body {
+  background: #0d1216; /* slightly darker fallback */
+  position: relative;
+  z-index: 0;
+  overflow-x: hidden;
+}
+
+/* Full-viewport fixed blurred gradient layer (darker, lower opacity) */
+body::before {
+  content: "";
+  position: fixed;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  pointer-events: none;
+  z-index: -1 !important; /* ensure sits behind all content */
+  /* Diagonal gradient: Rich Black -> Vivid Yellow -> Rich Black */
+  background: linear-gradient(135deg, rgba(16,24,32,1) 0%, rgba(254,231,21,0.85) 45%, rgba(16,24,32,1) 100%);
+  background-size: 300% 300%;
+  filter: blur(120px);
+  opacity: 0.26; /* lowered opacity for improved readability */
+  transform: translateZ(0);
+  will-change: background-position, transform, opacity;
+  animation: gradientShift 28s ease-in-out infinite;
+}
+
+/* Slightly slower, smoother animation */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  25%  { background-position: 40% 70%; }
+  50%  { background-position: 100% 50%; }
+  75%  { background-position: 60% 30%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Make containers and sections transparent so gradient flows seamlessly */
+.container,
+.container-fluid,
+.row,
+.col,
+.section,
+section.section,
+.main,
+#header,
+#footer,
+.hero {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Semi-translucent surfaces to avoid boxy look; very subtle borders only */
+.surface,
+.card,
+.service-item,
+.contact .info-box,
+.portfolio .portfolio-card,
+.hero .image-wrapper,
+.header-social-links,
+.social-links,
+.header,
+.footer {
+  background-color: rgba(16,24,32,0.48) !important; /* more translucent */
+  color: var(--default-color) !important;
+  border: 1px solid rgba(255,255,255,0.02) !important; /* extremely subtle */
+  box-shadow: none !important;
+  border-radius: 0.5rem !important; /* gentle rounding to soften edges */
+}
+
+/* Remove any hard inline background overrides that block gradient flow */
+[style*="background-color"],
+[style*="background-image"] {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Forms: keep translucent fields but increase contrast for legibility */
+form,
+.form-control,
+.form-select,
+textarea.form-control,
+input.form-control {
+  background: rgba(0,0,0,0.22) !important; /* slightly darker than page so fields are readable */
+  color: var(--default-color) !important;
+  border: 1px solid rgba(234,234,234,0.05) !important;
+  box-shadow: none !important;
+  border-radius: 0.375rem !important;
+}
+
+/* Focus state tuned to accent color, no layout changes */
+.form-control:focus,
+.form-select:focus,
+textarea.form-control:focus {
+  outline: none !important;
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 0 0 0.22rem rgba(254,231,21,0.10) !important;
+}
+
+/* Ensure primary content stacks above the blurred layer (body::before z-index:-1) */
+#header,
+.main,
+#footer,
+.hero,
+.section,
+.section * {
+  position: relative;
+  z-index: 0;
+}
+
+/* Keep fixed UI elements on top */
+.scroll-top { z-index: 99999; }
+#preloader { z-index: 9999; }
+.glightbox-cleanup, .glightbox-container, .modal { z-index: 100000 !important; }
+
+/* Remove strong boxed edges in header / nav / social icons so gradient shows through */
+.header,
+.header.light-background,
+.light-background {
+  background: rgba(16,24,32,0.24) !important; /* lighter translucency so blur reads through */
+  border-bottom: none !important;             /* remove hard bottom border */
+  box-shadow: none !important;                /* remove any shadow that creates edge */
+}
+
+/* Make header container and direct children transparent */
+.header .container,
+.header .logo,
+.header .navmenu,
+.header .header-social-links {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Nav menu surface (desktop + mobile) — ensure no boxed background */
+.navmenu,
+.navmenu > ul,
+.navmenu > ul > li,
+.navmenu .dropdown ul {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Nav links: keep existing color rules but remove any background or inset edges */
+.navmenu a,
+.header .navmenu a,
+.header .navmenu a:focus {
+  background: transparent !important;
+  color: var(--nav-color) !important;
+  box-shadow: none !important;
+}
+
+/* Header social icons — remove hard borders and opaque surfaces, keep subtle hover accent */
+.header .header-social-links,
+.header .header-social-links a {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: var(--default-color) !important;
+  padding: 0 !important;
+}
+
+/* Individual social icon style: keep circular clickable area but translucent so blur shows */
+.header .header-social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(16,24,32,0.18) !important; /* very subtle surface for contrast */
+  transition: background .18s ease, transform .18s ease, color .18s ease;
+  margin-left: 6px;
+  border: 1px solid rgba(255,255,255,0.02) !important; /* extremely subtle edge only */
+}
+
+/* Hover state uses vivid yellow accent but remains subtle */
+.header .header-social-links a:hover {
+  background: rgba(254,231,21,0.12) !important;
+  color: var(--contrast-color) !important;
+  transform: translateY(-2px);
+}
+
+/* Remove any inline/strong rules that could recreate a boxed look */
+[style*="background-color"]:not(.keep-bg),
+[style*="background-image"]:not(.keep-bg) {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Safety: make sure header sits above body::before blur */
+#header { position: relative; z-index: 1; }
+
+/* Keep footer / other surfaces consistent (less boxy) */
+.footer,
+.footer .container,
+.surface,
+.card,
+.service-item,
+.contact .info-box,
+.portfolio .portfolio-card {
+  background-color: rgba(16,24,32,0.44) !important;
+  border: 1px solid rgba(255,255,255,0.02) !important;
+  box-shadow: none !important;
+}
+
+/* Remove remaining strong boxed edges for social icons (hero / header / footer) */
+
+.social-links a,
+.header .header-social-links a,
+.hero .social-links a,
+.footer .social-links a {
+  background: transparent !important;    /* let global gradient show through */
+  border: none !important;               /* remove visible border */
+  box-shadow: none !important;           /* remove any shadow that creates edge */
+  width: auto !important;
+  height: auto !important;
+  padding: 0.28rem 0.35rem !important;   /* keep clickable area, no heavy box */
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem !important;   /* subtle rounding to avoid sharp corners */
+  color: var(--default-color) !important;
+  transition: background .18s ease, color .18s ease, transform .12s ease;
+}
+
+/* Hover: subtle accent glow without creating a heavy box */
+.social-links a:hover,
+.header .header-social-links a:hover,
+.hero .social-links a:hover,
+.footer .social-links a:hover {
+  background: rgba(254,231,21,0.06) !important; /* soft yellow tint */
+  color: var(--accent-color) !important;
+  transform: translateY(-2px);
+  border: none !important;
+}
+
+/* Ensure icon SVGs / <i> keep clear fill/colour */
+.social-links a i,
+.social-links a svg,
+.header .header-social-links a i,
+.footer .social-links a i {
+  color: inherit !important;
+  fill: currentColor !important;
+}
+
+/* Make sure the footer container is not creating a boxed surface behind icons */
+.footer,
+.footer .container,
+.footer .social-links {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Safety: override any inline styles that force opaque backgrounds on social containers */
+[style*="background"] .social-links,
+[style*="background-color"] .social-links {
+  background: transparent !important;
+}
+
+/* Remove any solid/boxed background behind the hero/profile image
+   Keep circular shape, subtle ring/shadow and existing floating elements/effects intact.
+   Only visual overrides, no layout or spacing changes.
+*/
+
+.hero .image-wrapper,
+.hero-image,
+.hero .image-wrapper .image-wrapper,
+.hero .image-wrapper .image-wrapper-inner {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  overflow: visible !important;
+  position: relative;
+}
+
+/* Hide pseudo-elements or overlays that create boxed backgrounds */
+.hero .image-wrapper::before,
+.hero .image-wrapper::after,
+.hero-image::before,
+.hero-image::after,
+.hero .image-wrapper .overlay,
+.hero .image-wrapper .image-overlay {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+}
+
+/* Keep profile image circular and legible; add a very subtle ring/shadow for effect only */
+.hero .image-wrapper img,
+.hero .image-wrapper .img-fluid,
+.hero-image img {
+  background: transparent !important;
+  border-radius: 50% !important;              /* maintain circular shape */
+  border: 1.5px solid rgba(255,255,255,0.04) !important; /* subtle ring, optional */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45) !important;   /* soft depth without box edge */
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+/* Ensure floating elements (icons/cards) still sit above the image */
+.hero .image-wrapper .floating-elements,
+.hero .image-wrapper .floating-card {
+  position: relative;
+  z-index: 3;
+}
+
+/* Safety: remove any inline/background overrides specifically targeting the hero image area */
+.hero [style*="background"],
+.hero [style*="background-color"] {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* End: hero/profile image background cleanup */
